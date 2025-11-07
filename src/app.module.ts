@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule, MysqlModule } from './modules';
+import { AuthModule, MysqlModule, UserModule } from './modules';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -11,7 +11,8 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: ['.env.local', '.env'],
     }),
     MysqlModule,
-    AuthModule
+    AuthModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],

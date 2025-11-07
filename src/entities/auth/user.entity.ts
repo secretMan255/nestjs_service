@@ -12,7 +12,7 @@ export class User {
         type: 'bigint',
         unsigned: true,
     })
-    id: string;
+    id: number;
 
     @Column({
         type: 'varchar',
