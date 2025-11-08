@@ -16,7 +16,7 @@ export class AuthController {
         // set cookie
         // const result = await this.authService.login(dto)
 
-        // res.cookie('access_token', result.token, {
+        // res.cookie('liangliang_access_token', result.token, {
         //     httpOnly: true,
         //     secure: process.env.NODE_ENV === 'production',
         //     sameSite: 'lax',
