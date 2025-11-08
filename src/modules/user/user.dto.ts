@@ -12,6 +12,10 @@ export class GetUserDto {
 
     @IsString()
     @IsOptional()
+    email?: string
+
+    @IsString()
+    @IsOptional()
     username?: string
 
     @IsNumber()
@@ -19,4 +23,9 @@ export class GetUserDto {
 
     @IsNumber()
     limit?: number = 1
+}
+
+export class GetUserPasswordDto {
+    @IsNumber()
+    id: number
 }

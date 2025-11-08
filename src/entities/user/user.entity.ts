@@ -4,7 +4,9 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToOne,
 } from 'typeorm';
+import { UserSecurity } from './user_security.entity';
 
 @Entity('user')
 export class User {
@@ -97,4 +99,7 @@ export class User {
         nullable: true,
     })
     displayName: string | null;
+
+    @OneToOne(() => UserSecurity, (sec) => sec.user)
+    security?: UserSecurity
 }
