@@ -6,7 +6,7 @@ import {
 export class LoginDto {
     @IsString()
     @IsNotEmpty()
-    username: string
+    email: string
 
     @IsString()
     @IsNotEmpty()
