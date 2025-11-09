@@ -8,6 +8,7 @@ import { AppCronService } from './app.cron.service';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard } from '@nestjs/throttler';
+import { PermissionsGuard } from './guard/auth/permissions.guard';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { ThrottlerGuard } from '@nestjs/throttler';
     ScheduleModule.forRoot(),
     MysqlModule,
     AuthModule,
-    UserModule
+    UserModule,
   ],
   controllers: [AppController],
   providers: [

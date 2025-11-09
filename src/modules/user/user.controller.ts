@@ -4,6 +4,8 @@ import { UserService } from './user.service'
 import { validatePipe } from 'src/utils'
 import { JwtAuthGuard } from 'src/guard/auth/jwt.auth.guard'
 import { Throttle, SkipThrottle } from '@nestjs/throttler';
+import { PermissionsGuard } from 'src/guard/auth/permissions.guard'
+import { Permissions } from 'src/guard/auth/permissions.decorator'
 
 // controller skip rate limit
 // @SkipThrottle()
@@ -17,7 +19,8 @@ export class UserController {
 
     // @Throttle({ default: { limit: 60, ttl: 60 } })
     @Get()
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, PermissionsGuard)
+    @Permissions('user.visit', 'user.edit')
     @UsePipes(validatePipe)
     async getUser(@Query() dto: GetUserDto) {
         return await this.userService.getUser(dto)

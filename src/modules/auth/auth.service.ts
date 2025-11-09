@@ -27,7 +27,7 @@ export class AuthService {
         if (!isMatch) ErrorExceptoin(401, 'Invalid username or password')
 
         // generate token
-        const payload = { id: user.id, name: user.displayName }
+        const payload = { id: user.id, name: user.displayName, permission: ['product.visit_test'] }
 
         await this.userService.updateLastLoginAt(user.id)
 
