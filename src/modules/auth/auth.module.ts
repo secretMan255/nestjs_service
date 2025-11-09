@@ -5,7 +5,7 @@ import { UserModule } from '../user';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from 'src/guard/auth/cookie.jwt.guard';
+import { JwtStrategy } from 'src/guard/auth/jwt.guard';
 
 @Module({
     imports: [
