@@ -4,8 +4,8 @@ import { UserService } from './user.service'
 import { validatePipe } from 'src/utils'
 import { JwtAuthGuard } from 'src/guard/auth/jwt.auth.guard'
 import { Throttle, SkipThrottle } from '@nestjs/throttler';
-import { PermissionsGuard } from 'src/guard/auth/permissions.guard'
-import { Permissions } from 'src/guard/auth/permissions.decorator'
+import { PermissionsGuard } from 'src/guard/permission/permissions.guard'
+import { Permissions } from 'src/guard/permission/permissions.decorator'
 
 // controller skip rate limit
 // @SkipThrottle()
