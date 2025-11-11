@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, UsePipes, Res } from '@nestjs/common'
 import type { Response } from 'express'
-import { LoginDto } from './auth.dto'
+import { LoginDto, RegisterDto } from './auth.dto'
 import { AuthService } from './auth.service'
 import { validatePipe } from 'src/utils'
 
@@ -27,5 +27,11 @@ export class AuthController {
         // return result
 
         return await this.authService.login(dto)
+    }
+
+    @Post('register')
+    @UsePipes(validatePipe)
+    async register(@Body() dto: RegisterDto) {
+        return await this.authService.register(dto)
     }
 }
