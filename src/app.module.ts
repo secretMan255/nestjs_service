@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule, MysqlModule, UserModule } from './modules';
+import { AuthModule, MysqlModule, PrismaModule, UserModule, EventModule } from './modules';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AppCronService } from './app.cron.service';
@@ -24,9 +24,11 @@ import { ThrottlerGuard } from '@nestjs/throttler';
       envFilePath: ['.env.local', '.env'],
     }),
     ScheduleModule.forRoot(),
-    MysqlModule,
+    PrismaModule,
+    // MysqlModule,
     AuthModule,
     UserModule,
+    EventModule
   ],
   controllers: [AppController],
   providers: [

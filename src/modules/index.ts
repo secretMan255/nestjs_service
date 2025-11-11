@@ -1,3 +1,5 @@
 export * from './auth'
 export * from './mysql.module'
 export * from './user'
+export * from './prisma'
+export * from './event'
