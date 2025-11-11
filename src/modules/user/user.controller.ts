@@ -23,6 +23,6 @@ export class UserController {
     @Permissions('user.visit', 'user.edit')
     @UsePipes(validatePipe)
     async getUser(@Query() dto: GetUserDto) {
-        return await this.userService.getUser(dto)
+        // return await this.userService.getUser(dto)
     }
 }
