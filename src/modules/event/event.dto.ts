@@ -9,6 +9,14 @@ import {
     IsIn
 } from 'class-validator';
 
+export const orderFieldMap = {
+    name: 'name',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    location: 'location',
+    status: 'status',
+} as const
+
 export class CreateEventDto {
     @IsNotEmpty()
     @IsString()
@@ -26,6 +34,10 @@ export class CreateEventDto {
     @IsString()
     location: string
 
+    @IsNotEmpty()
+    @IsString()
+    description: string
+
     @IsOptional()
     @IsString()
     @IsIn(['Ongoing'], {
@@ -35,67 +47,77 @@ export class CreateEventDto {
 
     @IsOptional()
     @IsString()
-    thumbnail?: string;
+    thumbnail?: string
 }
 
 export class GetEventListDto {
     @IsOptional()
     @IsString()
-    keyword?: string;
+    keyword?: string
 
     @IsOptional()
     @IsString()
-    status?: string;
+    status?: string
 
     @IsOptional()
     @IsDateString()
-    startDateFrom?: string;
+    startDateFrom?: string
 
     @IsOptional()
     @IsDateString()
-    startDateTo?: string;
+    startDateTo?: string
 
     @IsOptional()
     @Type(() => Number)
     @IsInt()
     @Min(1)
-    page?: number = 1;
+    page?: number = 1
 
     @IsOptional()
     @Type(() => Number)
     @IsInt()
     @Min(1)
-    pageSize?: number = 10;
+    pageSize?: number = 10
+
+    @IsOptional() @IsIn(['name', 'startDate', 'endDate', 'location', 'status'])
+    orderBy?: 'name' | 'startDate' | 'endDate' | 'location' | 'status' = 'startDate'
+
+    @IsOptional() @IsIn(['asc', 'desc'])
+    order?: 'asc' | 'desc' = 'asc'
 }
 
 export class UpdateEventDto {
     @IsOptional()
     @IsString()
-    name?: string;
+    name?: string
 
     @IsOptional()
     @IsDateString()
-    startDate?: string;
+    startDate?: string
 
     @IsOptional()
     @IsDateString()
-    endDate?: string;
+    endDate?: string
 
     @IsOptional()
     @IsString()
-    location?: string;
+    location?: string
 
     @IsOptional()
     @IsString()
-    status?: string;
+    description?: string
 
     @IsOptional()
     @IsString()
-    thumbnail?: string | null;
+    status?: string
+
+    @IsOptional()
+    @IsString()
+    thumbnail?: string | null
 }
 
 export class DeleteEventDto {
     @IsNotEmpty()
     @IsString()
-    password: string;
+    password: string
 }

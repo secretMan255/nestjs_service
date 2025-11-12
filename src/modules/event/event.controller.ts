@@ -12,7 +12,6 @@ export class EventController {
     ) { }
 
     @Get()
-    @UseGuards(JwtAuthGuard)
     async getEventList(@Query() query: GetEventListDto) {
         return this.eventService.getEventList(query);
     }

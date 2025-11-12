@@ -1,6 +1,6 @@
-import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateEventDto, GetEventListDto, UpdateEventDto } from './event.dto';
+import { CreateEventDto, GetEventListDto, orderFieldMap, UpdateEventDto } from './event.dto';
 import { ErrorExceptoin } from 'src/utils';
 import * as bcrypt from 'bcrypt'
 
@@ -33,7 +33,7 @@ export class EventService {
             this.prisma.event.count({ where }),
             this.prisma.event.findMany({
                 where,
-                orderBy: { startDate: 'desc' },
+                orderBy: { [orderFieldMap[dto.orderBy || 'name']]: dto.order || 'asc' },
                 skip,
                 take,
             }),
@@ -71,6 +71,7 @@ export class EventService {
                 startDate: new Date(dto.startDate),
                 endDate: new Date(dto.endDate),
                 location: dto.location,
+                description: dto.description,
                 thumbnail: thumbnailPath ?? null,
                 status: dto.status ?? 'Ongoing'
             }
@@ -92,6 +93,7 @@ export class EventService {
 
         if (dto.name !== undefined) data.name = dto.name
         if (dto.location !== undefined) data.location = dto.location
+        if (dto.description !== undefined) data.description = dto.description
         if (dto.status !== undefined) data.status = dto.status
         if (dto.thumbnail !== undefined) data.thumbnail = dto.thumbnail
         if (dto.startDate !== undefined) data.startDate = new Date(dto.startDate)

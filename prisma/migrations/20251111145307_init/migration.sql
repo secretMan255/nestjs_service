@@ -14,6 +14,7 @@ CREATE TABLE "Event" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "location" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
     "status" TEXT NOT NULL,
